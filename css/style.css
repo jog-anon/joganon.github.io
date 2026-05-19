@@ -17,11 +17,15 @@
 .card-image {
   position: relative;
   overflow: hidden;
-  height: 150px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f5f5f5;
+}
+
+.card.medium .card-image {
+  height: 150px;
 }
 
 .card-image img {
