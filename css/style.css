@@ -17,7 +17,7 @@
 .card-image {
   position: relative;
   overflow: hidden;
-  height: 300px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
