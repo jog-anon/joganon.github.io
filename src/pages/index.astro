@@ -1,17 +1,32 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Jog-Anon - Apoio a Familiares de Jogadores Compulsivos">
+<div class="section no-pad-bot" id="index-banner">
+		<div class="container center-align">
+			<!-- AVISOS -->
+ 			<div class="center">
+ 				<div class="col s12 m5">
+ 					<div class="card-panel red z-depth-2">
+						<span class="white-text"><h5>Atenção!</h5> 
+							Estamos realizando reuniões presenciais, confira em endereços.</br></br>
+							Fale conosco pelo WhatsApp (11) 98525-7566 ou pelo e-mail contato.joganon@gmail.com
+						</span>
+ 					</div>
+ 				</div>
+ 			</div>
+			<a href="index.html"><img alt="Logotipo do Jog-Anon" style="max-width: 250px" class="responsive-img" src="imagem/logo_joganon.png"></a>
+			<div class="row center">
+<!-- 				<h5>JOG ANON</h5> -->
+				<span class="text ">JOG-ANON é uma organização composta por esposas,
+					maridos, parentes e amigos íntimos de pessoas que foram afetados
+					pelo problema do jogo.</span><br> <span> Você está tendo
+					problemas financeiros devido ao jogo de um familiar ou amigo? </span><br>
+				<span>Você está sofrendo emocionalmente em razão do jogo
+					compulsivo? </span><br> 
+				<h5 class="red-text"><span> Nós estamos aqui para tentar te
+					ajudar. </span></h5>
+			</div>
+		<div class="spacer-bottom"></div>
+		</div>
+</BaseLayout>
