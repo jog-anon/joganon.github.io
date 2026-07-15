@@ -2,6 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Jog-Anon">
+<div class="address-alert-overlay" data-address-alert aria-hidden="true">
+	<div class="address-alert-dialog" role="dialog" aria-modal="true" aria-label="Aviso de novo endereço Jog-Anon Campinas">
+		<button class="address-alert-close" type="button" data-address-alert-close aria-label="Fechar aviso">
+			<i class="material-icons" aria-hidden="true">close</i>
+		</button>
+		<img src="/imagem/alerta-campinas.jpeg" alt="Atenção novo endereço até reforma da sala Jog-Anon Campinas. Reunião presencial na Rua Paulo Lacerda, 309, Bairro São Bernardo, Sociedade de Amigos do Bairro. Domingo às 10 horas." />
+	</div>
+</div>
+
 <div class="section no-pad-bot" id="index-banner">
 		<div class="container center-align">
 			<br> <br>
@@ -108,15 +117,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
  						<div class="card medium">
 							<div class="card-image">
 								<iframe width="200" height="100" frameborder="0" scrolling="no"
-									marginheight="0" marginwidth="0"			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.529798794463!2d-38.46253428517764!3d-13.001898190835986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7161b663c7802cd%3A0x7242755406b9a6f7!2sAlameda+Verona%2C+158+-+Pituba%2C+Salvador+-+BA%2C+41830-465!5e0!3m2!1spt-BR!2sbr!4v1505477396571"></iframe>
+									marginheight="0" marginwidth="0"			src="https://www.google.com/maps?q=Rua+Paulo+Lacerda,+309,+S%C3%A3o+Bernardo,+Campinas,+SP&amp;output=embed"></iframe>
 								<br />
 							</div>
 							<div class="card-content">
 								<p style="color: red;">São Paulo - Campinas</p>
-								Domingo, 10h<br> Rua Guaraci, 38 - Vila Angela Marta<br>
+								Domingo, 10h<br> Rua Paulo Lacerda, 309<br>
+								Bairro São Bernardo<br> Sociedade de Amigos do Bairro<br>
 							</div>
 							<div class="card-action">
-								<small><a href="https://maps.app.goo.gl/AWjxBeBGREdTpduq9"
+								<small><a href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Paulo+Lacerda,+309,+S%C3%A3o+Bernardo,+Campinas,+SP"
 									style="color: #0000FF; text-align: left" target="_blank">Ver
 										mapa maior</a></small>
 							</div>
@@ -357,4 +367,98 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			</div>
 		</div>
 	</div>
+
+<style>
+	.address-alert-overlay {
+		align-items: center;
+		background: rgba(0, 0, 0, 0.72);
+		display: none;
+		inset: 0;
+		justify-content: center;
+		padding: 18px;
+		position: fixed;
+		z-index: 10000;
+	}
+
+	.address-alert-overlay.is-visible {
+		display: flex;
+	}
+
+	.address-alert-dialog {
+		background: #ffffff;
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+		max-height: 92vh;
+		max-width: 760px;
+		padding: 10px;
+		position: relative;
+		width: min(92vw, 760px);
+	}
+
+	.address-alert-dialog img {
+		display: block;
+		height: auto;
+		max-height: calc(92vh - 20px);
+		object-fit: contain;
+		width: 100%;
+	}
+
+	.address-alert-close {
+		align-items: center;
+		background: #0277bd;
+		border: 0;
+		border-radius: 50%;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+		color: #ffffff;
+		cursor: pointer;
+		display: flex;
+		height: 42px;
+		justify-content: center;
+		position: absolute;
+		right: -14px;
+		top: -14px;
+		width: 42px;
+		z-index: 1;
+	}
+
+	.address-alert-close:focus {
+		outline: 3px solid #ffffff;
+		outline-offset: 2px;
+	}
+
+	body.address-alert-open {
+		overflow: hidden;
+	}
+</style>
+
+<script is:inline>
+	const addressAlert = document.querySelector('[data-address-alert]');
+	const addressAlertClose = document.querySelector('[data-address-alert-close]');
+
+	const closeAddressAlert = () => {
+		addressAlert?.classList.remove('is-visible');
+		addressAlert?.setAttribute('aria-hidden', 'true');
+		document.body.classList.remove('address-alert-open');
+	};
+
+	if (addressAlert) {
+		window.setTimeout(() => {
+			addressAlert.classList.add('is-visible');
+			addressAlert.setAttribute('aria-hidden', 'false');
+			document.body.classList.add('address-alert-open');
+			addressAlertClose?.focus();
+		}, 300);
+
+		addressAlertClose?.addEventListener('click', closeAddressAlert);
+		addressAlert.addEventListener('click', (event) => {
+			if (event.target === addressAlert) {
+				closeAddressAlert();
+			}
+		});
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape') {
+				closeAddressAlert();
+			}
+		});
+	}
+</script>
 </BaseLayout>
